@@ -1,0 +1,36 @@
+﻿@model MovieApplicationCore.Models.MovieModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+@using (Html.BeginForm())
+{
+<div class="form-horizontal">
+    <h4>Create Movie</h4>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(m => m.MovieName, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.MovieName, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MovieName, "", htmlAttributes: new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.Description, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description, "", htmlAttributes: new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MovieLangauge, htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownListFor(m => m.MovieLangauge,new SelectList(ViewBag.MyLanguageList,"Value","Text"),"Select")
+        @Html.ValidationMessageFor(m => m.MovieLangauge, "", htmlAttributes: new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</div>
+<hr />
+@if (ViewBag.Message != null)
+{
+    <div class="alert">@ViewBag.Message</div>
+}
+}
